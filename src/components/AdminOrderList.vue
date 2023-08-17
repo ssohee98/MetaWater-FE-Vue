@@ -58,13 +58,35 @@
                                             </table>
                                         </div>
                                         <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-                                            Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam.
+                                             <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>                                               
+                                                        <th class="text-center">주문일시</th>
+                                                        <th class="text-center">주문상품</th>
+                                                        <th class="text-center">주문자</th>
+                                                        <th class="text-center">계약기간</th>
+                                                        <th class="text-center">월 렌탈료</th>
+                                                         <th class="text-center">렌탈 관리</th>
+                                                    </tr>
+                                                 </thead>
+                                                <tbody>
+                                                    <tr  v-for ="(rental,index) in rentals" :key="index">                                                       
+                                                        <th class="text-center">{{rental.orderDate}}</th>
+                                                        <td class="text-center">{{rental.product.productName}}</td>
+                                                        <td class="text-center">{{rental.member.memName}}</td>                     
+                                                        <td class="text-center">{{rental.rental.renTerm}}년</td>
+                                                        <td class="text-center">{{rental.product.productRentalPrice}}</td>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg"  @click="orderDetail(rental.orderNo)">
+                                                            상세
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                         <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
                                             Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend ac ornare magna.
-                                        </div>
-                                        <div class="tab-pane fade" id="custom-tabs-one-settings" role="tabpanel" aria-labelledby="custom-tabs-one-settings-tab">
-                                            Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
                                         </div>
                                     </div>
                                  </div>
@@ -89,8 +111,8 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">주문상품</th>
-                                                    <th class="text-center">주문금액</th>
-                                                    <th class="text-center">주문유형</th>
+                                                    <th class="text-center">월렌탈료</th>
+                                                    <th class="text-center">렌탈 계약기간</th>
                                                     <th class="text-center">상태</th>
                                                     <th class="text-center">결제수단</th>           
                                                 </tr>
@@ -99,7 +121,7 @@
                                                 <tr >                                          
                                                     <td class="text-center">{{order.product.productName}}</td>
                                                     <td class="text-center">{{order.product.productPrice}}</td>                     
-                                                    <td class="text-center">{{order.orderType}}</td>
+                                                    <td class="text-center">{{order.rental.renTerm}}년</td>
                                                     <td class="text-center">
                                                         <select class="form-select" v-model="order.orderState">
                                                             <option value="입금대기">입금대기</option>
@@ -114,24 +136,32 @@
                                                  </tr>
                                             </tbody>
                                          </table>
-                                        <h6 class="text-right">주문 총 금액 </h6>
+                                        <h6 class="text-right">총 주문 금액 </h6>
                                         <br/>
-                                        <h6>주문 정보 </h6>
+                                        <h6>렌탈 정보</h6>
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">수취인</th>
-                                                    <th class="text-center">설치희망일</th>
-                                                    <th class="text-center">설치주소</th>
-                                                    <th class="text-center">수취인 연락처</th>                                              
+                                                    <th class="text-center">대여 종료일</th>
+                                                    <td>2022-04-18</td>
+                                                    <th class="text-center">정기결제일</th>
+                                                    <td class="text-center">10일</td>                                                                                              
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td class="text-center">{{order.orderName}}</td>
-                                                    <td class="text-center">{{order.orderHopedate}}</td>
-                                                    <td class="text-center">{{order.orderAdd}}</td>                     
-                                                    <td class="text-center">{{order.orderPhone}}</td>                                                                                 
+                                                    <th class="text-center">수취인</th>
+                                                    <td class="text-center">김민기</td>   
+                                                    <th class="text-center">수취인 연락처</th>
+                                                    <td class="text-center">{{order.orderHopedate}}</td>                                                                                                                                
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center" >설치희망일</th>
+                                                    <td class="text-center" colspan="3">2022-04-05</td>                                                                                                                            
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center">설치주소</th>
+                                                    <td class="text-center" colspan="3">부산</td>                                                                                                                            
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -157,7 +187,8 @@ import {ref ,computed} from 'vue';
 
 export default {
  props: {
-    orders: Object
+    orders: Object,
+    rentals: Object
  },
  setup(){
     const order = ref(null);

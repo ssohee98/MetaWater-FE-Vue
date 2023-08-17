@@ -193,7 +193,7 @@ setup(props) {
       console.log(res.data);
     };
 
-    //watch 속성으로 searchKeyword가가 있으면 상품개수 바꾸고
+    //watch 속성으로 searchKeyword가 있으면 상품개수 바꾸고
     watch(searchKeyword, () => {
       getProductList();
     });

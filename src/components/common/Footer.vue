@@ -54,14 +54,6 @@
                     <div class="col-md-6 text-center text-md-start">
                         <p class="text-sm mb-md-0">&copy;All rights reserved.  April 2023 Team Metamong with Metanet</p>
                     </div>
-                    <div class="col-md-6">
-                        <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-end">
-                            <li class="list-inline-item"><img class="w-2rem" src="img/visa.svg" alt="..."></li>
-                            <li class="list-inline-item"><img class="w-2rem" src="img/mastercard.svg" alt="..."></li>
-                            <li class="list-inline-item"><img class="w-2rem" src="img/paypal.svg" alt="..."></li>
-                            <li class="list-inline-item"><img class="w-2rem" src="img/western-union.svg" alt="..."></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>

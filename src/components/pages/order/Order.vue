@@ -459,9 +459,15 @@ setup() {
     console.log(data);
     console.log(order.value);
 
+    // 바꾼 코드
+    const memNo = sessionStorage.getItem('memNo');
+    console.log("sessionStorage에서 가져온 값 : " + memNo);
+
     try{
       //const res = await axios.post('/'+productNo+'/'+memberNo+'/rental', data);
-      const res = await axios.post('/order/'+productNo+'/4', data);
+      // const res = await axios.post('/order/'+productNo+'/memNo', data);
+      // 바꾼 코드
+      const res = await axios.post(`order/${productNo}/${memNo}`, data);
       console.log(res);
       //console.log(res.orderNo);
       if(res != null) {

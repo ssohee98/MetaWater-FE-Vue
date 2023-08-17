@@ -38,7 +38,7 @@ export default {
         console.log(productNo);
         try{
             await axios.delete(`/admin/product/${productNo}` );
-            state.products = state.products.filter(product => product.product_no !== productNo);
+            state.products = state.products.filter(product => product.productNo !== productNo);
            
 
         }catch(err){

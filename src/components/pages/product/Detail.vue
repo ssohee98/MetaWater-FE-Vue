@@ -369,7 +369,7 @@
                   </div>
                 </div> -->
 
-                <div class="text-block d-flex align-items-start mb-4" :value="review.reviewNo" :key="review.reviewNo" v-for="review in reviews">
+                <div class="text-block d-flex row align-items-start mb-4" :value="review.reviewNo" :key="review.reviewNo" v-for="review in reviews">
                   <div class="row">
                     <div class="col-md-4 mb-3 mb-md-0"><img class="d-block avatar rounded-0" v-bind:src="review.reImageUrl" alt="avatar" style="width: 200px; height: 260px;"></div>
                     <div class="col-md-8">
@@ -419,7 +419,7 @@
                         <label class="form-label" for="questionContent" style="font-weight: bold; font-size: 16px;">문의 내용</label>
                         <textarea class="form-control" v-model="qna.proqContent" rows="4" name="questionContent" type="text" id="questionContent" placeholder="문의 내용" required="required" autocomplete="off"></textarea>
                       </div>
-                      <div class="row" style="text-align: left;">
+                      <!-- <div class="row" style="text-align: left;">
                         <div class="col-sm-6">
                           <div class="mb-4">
                             <label class="form-label" for="name">작성자 |</label>
@@ -432,6 +432,22 @@
                           <div class="mb-4">
                             <label class="form-label" for="phone">휴대폰 |</label>
                             &nbsp;&nbsp;&nbsp;<span>010-2685-2139</span>
+                          </div>
+                        </div>
+                      </div> -->
+                      <div class="row" style="text-align: left;">
+                        <div class="col-sm-6">
+                          <div class="mb-4">
+                            <label class="form-label" for="name">작성자 |</label>
+                            &nbsp;&nbsp;&nbsp;<label>{{memName}}</label>
+                          </div>
+                          <div class="mb-4">
+                            <label class="form-label" for="email">이메일 |</label>
+                            &nbsp;&nbsp;&nbsp;<span>{{memEmail}}</span>
+                          </div>
+                          <div class="mb-4">
+                            <label class="form-label" for="phone">휴대폰 |</label>
+                            &nbsp;&nbsp;&nbsp;<span>{{memPhone}}</span>
                           </div>
                         </div>
                       </div>
@@ -585,11 +601,17 @@
     
     const productNo = route.query.pno;
     console.log("detail page : "+productNo);
+    const memNo = sessionStorage.getItem('memNo');
+    console.log("sessionStorage에서 가져온 값 : " + memNo);
+    const memName = sessionStorage.getItem('memName');
+    const memEmail = sessionStorage.getItem('memEmail');
+    const memPhone = sessionStorage.getItem('memPhone');
 
     const getProductDetail = async() => {
       console.log("해당 상품 받아와??");
       console.log("상품 번호: "+productNo);
-      const res = await axios.get('/product/' +productNo);
+      //const res = await axios.get('/product/' +productNo);
+      const res = await axios.get(`/product/${productNo}`);
       console.log(res.data);
       detailProduct.value = {...res.data};
       
@@ -599,7 +621,8 @@
 
     const getReviewList = async() => {
       console.log("리뷰 받아와??");
-      const res = await axios.get('/product/' +productNo+ '/reviews');
+      //const res = await axios.get('/product/' +productNo+ '/reviews');
+      const res = await axios.get(`/product/${productNo}/reviews`);
       console.log(res.data);
       reviews.value = res.data;
       reviewTotal.value = reviews.value.length;
@@ -608,14 +631,16 @@
     const avgStar = ref(0);
 
     const getReviewStar = async() => {
-      const avg = await axios.get('/product/' +productNo+ '/reviewStar');
+      //const avg = await axios.get('/product/' +productNo+ '/reviewStar');
+      const avg = await axios.get(`/product/${productNo}/reviewStar`);
       console.log(avg.data);
       avgStar.value = avg.data;
     } 
 
     const getInquiryList = async() => {
       console.log("문의 받아와??");
-      const res = await axios.get('/product/' +productNo+ '/proQna');
+      //const res = await axios.get('/product/' +productNo+ '/proQna');
+      const res = await axios.get(`/product/${productNo}/proQna`);
       console.log(res.data);
       inquirys.value = res.data;
       inquiryTotal.value = inquirys.value.length;
@@ -631,8 +656,10 @@
       }
       console.log("data" + data.proqTitle);
       //if(data=null) alert("문의를 작성해주세요");
-      try{
-        const res = await axios.post('/product/' +productNo+ '/qnaInsert', data);
+      try{  ///{productNo}/{memNo}/qnaInsert
+        //const res = await axios.post('/product/' +productNo+ '/qnaInsert', data);
+        //const res = await axios.post('/product/' +productNo+ '/' +memNo+ '/qnaInsert', data);
+        const res = await axios.post(`/product/${productNo}/${memNo}/qnaInsert`, data);
         if(res != null) {
           //alert("문의가 등록되었습니다");
           Swal.fire({
@@ -696,6 +723,10 @@
     submitInquiry,
     orderRental,
     orderPurchase,
+    memNo,
+    memName,
+    memEmail,
+    memPhone,
   }
 
   }

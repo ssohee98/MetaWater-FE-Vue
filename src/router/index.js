@@ -3,8 +3,9 @@ import Home from '@/components/pages/Home.vue';
 import Login from '@/components/pages/member/Login.vue';
 import Signup from '@/components/pages/member/Signup.vue';
 import AdminRegister from '@/components/pages/admin/AdminRegister.vue';
+import AdminUpdate from '@/components/pages/admin/AdminUpdate.vue';
 import AdminList from '@/components/pages/admin/AdminList.vue';
-import AdminMember from '@/components/pages/admin/AdminMember.vue';
+// import AdminMember from '@/components/pages/admin/AdminMember.vue';
 import Rental from '@/components/pages/order/Rental.vue';
 import RentalResult from '@/components/pages/order/RentalResult.vue';
 import Order from '@/components/pages/order/Order.vue';
@@ -16,14 +17,14 @@ import AdminOrder from '@/components/pages/admin/AdminOrderList.vue';
 import MyProduct from '@/components/pages/mypage/MyProduct.vue';
 import MyPage from '@/components/pages/mypage/MyPage.vue';
 import MyOrderList from '@/components/pages/mypage/MyOrderList.vue';
+import MyCancelList from '@/components/pages/mypage/MyCancelList.vue';
 import MyPayList from '@/components/pages/mypage/MyPayList.vue';
-
+import MyAccount from '@/components/pages/mypage/MyAccount.vue';
 
 const router = createRouter({
     history: createWebHashHistory(),
     // mode: history,
-    routes: [
-        {
+    routes: [{
             path: '/',
             name: 'Home',
             component: Home
@@ -44,6 +45,11 @@ const router = createRouter({
             component: AdminRegister
         },
         {
+            path: '/adminUpdate/:id',
+            name: 'AdminUpdate',
+            component: AdminUpdate
+        },
+        {
             path: '/adminorder',
             name: 'AdminOrder',
             component: AdminOrder
@@ -53,11 +59,7 @@ const router = createRouter({
             name: 'AdminList',
             component: AdminList
         },
-        {
-            path: '/adminmember',
-            name: 'AdminMember',
-            component: AdminMember
-        },
+
         {
             path: '/rental',
             name: 'Rental',
@@ -105,9 +107,14 @@ const router = createRouter({
             component: SearchList
         },
         {
-            path: '/myproduct/:orderNo',
+            path: '/mypage/myproduct/:orderNo',
             name: 'MyProduct',
             component: MyProduct
+        },
+        {
+            path: '/mypage/myaccount',
+            name: 'MyAccount',
+            component: MyAccount
         },
         {
             path: '/mypage/myproduct',
@@ -118,6 +125,11 @@ const router = createRouter({
             path: '/myorder',
             name: 'MyOrderList',
             component: MyOrderList
+        },
+        {
+            path: '/mycancel',
+            name: 'MyCancelList',
+            component: MyCancelList
         },
         {
             path: '/mylist',

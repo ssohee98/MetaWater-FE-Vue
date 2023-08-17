@@ -103,7 +103,7 @@
                   <br>
                   <div class="mb-4 col-md-6">
                     <label class="form-label" for="card-name">방문 시간 선택</label>
-                    <select class="selectpicker form-control mb-3" v-model="rental.deliveryTime" name="deliveryDate" id="deliveryDate" data-style="btn-selectpicker">
+                    <select class="selectpicker form-control mb-3" v-model="rental.deliveryTime" name="deliveryDate" id="deliveryDate" data-style="btn-selectpicker" placeholder="방문시간 선택">
                       <option>선택</option>
                       <option>오전 10 ~ 11시</option>
                       <option>오전 11 ~ 12시</option>
@@ -150,7 +150,7 @@
                       
                       <div class="mb-4 col-md-6">
                         <label class="form-label" for="card-name">카드선택</label>
-                        <select class="selectpicker form-control mb-3" v-model="rental.orderPay" name="payment" id="form_payment" data-style="btn-selectpicker">
+                        <select class="selectpicker form-control mb-3" v-model="rental.orderPay" name="payment" id="form_payment" data-style="btn-selectpicker" placeholder="카드 선택">
                           <option>선택</option>
                           <option>BC카드</option>
                           <option>삼성카드</option>
@@ -189,7 +189,7 @@
                       
                       <div class="mb-4 col-md-6">
                         <label class="form-label" for="card-name">은행명</label>
-                        <select class="selectpicker form-control mb-3" name="payment" id="form_payment" data-style="btn-selectpicker">
+                        <select class="selectpicker form-control mb-3" name="payment" id="form_payment" data-style="btn-selectpicker" placeholder="은행 계좌 선택">
                           <option value="">선택</option>
                           <option value="">산업은행</option>
                           <option value="">기업은행</option>
@@ -445,7 +445,8 @@ export default {
     const getProduct = async() => {
       console.log("해당 상품 받아와??");
       console.log("상품 번호: "+productNo);
-      const res = await axios.get('/product/' +productNo);
+      const res = await axios.get(`/product/${productNo}`);
+      //const res = await axios.get('/product/' +productNo);
       product.value = {...res.data};
 
       //계약기간에 따라서 달라지는 렌탈금액
@@ -483,16 +484,18 @@ export default {
 
       console.log(data);
       console.log(rental.value);
+      
+      // 바꾼 코드
+    const memNo = sessionStorage.getItem('memNo');
+    console.log("sessionStorage에서 가져온 값 : " + memNo);
 
       try{
         //const res = await axios.post('/'+productNo+'/'+memberNo+'/rental', data);
-        const res = await axios.post('/order/rental/'+productNo+'/4', data);
+        const res = await axios.post(`/order/rental/${productNo}/${memNo}`, data);
         console.log(res);
-        //console.log(res.orderNo);
         if(res != null) {
           //alert("주문이 정상적으로 완료되었습니다.");
           const orderNo = await axios.get('/order/getOrderNo');
-          //console.log(orderNo.data);
           router.push({
             name: 'RentalResult',
             query: {

@@ -12,15 +12,15 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                         회원 관리
                         <i class="right fas fa-angle-left"></i>
-                    </p>
+                    </p> 
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
@@ -138,7 +138,7 @@
                     </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-edit"></i>
                     <p>
@@ -172,7 +172,7 @@
                         </a>
                     </li>
                     </ul>
-                </li>
+                </li> -->
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

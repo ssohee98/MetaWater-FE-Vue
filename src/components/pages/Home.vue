@@ -13,6 +13,9 @@
      <section class="py-6 bg-gray-100"> 
        <div class="container">
          <div class="text-center pb-lg-4">
+        
+
+          
            <p class="subtitle text-secondary">Best Items 5</p>
            <h2 class="mb-5">베스트 상품 No.5</h2>
          </div>

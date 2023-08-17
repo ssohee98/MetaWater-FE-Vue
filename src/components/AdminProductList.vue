@@ -6,39 +6,7 @@
                     <div class="container-fluid">
                     <form action="enhanced-results.html">
                         <div class="row">
-                            <div class="col-md-10 offset-md-1">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label>기능명</label>
-                                            <select class="select2" style="width: 100%;">
-                                                <option>냉온정수기</option>
-                                                <option>냉정수기</option>
-                                                <option>냉온절수기 + 얼음</option> 
-                                                <option>냉정절수기 + 얼음</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-group">
-                                            <label>Sort Order:</label>
-                                            <select class="select2" style="width: 100%;">
-                                                <option selected>오름차순</option>
-                                                <option>내림차순</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-group">
-                                            <label>Order By:</label>
-                                            <select class="select2" style="width: 100%;">
-                                                <option selected>제품명</option>
-                                                <option>등록일</option>
-                                                <option>판매량</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-md-10 offset-md-1">                               
                                 <div class="form-group">
                                     <div class="input-group input-group-lg">
                                         <input type="search" class="form-control form-control-lg" placeholder="제품 검색">
@@ -72,7 +40,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                <h3 class="card-title">제품 목록</h3>
+                <h3 class="card-title"></h3>
                     <div class="card-tools">
                         <router-link class="btn btn-block btn-secondary" :to="{name: 'AdminRegister'}">제품등록</router-link>
                     </div>
@@ -81,17 +49,17 @@
                 <table class="table table-striped projects">
                     <thead>
                         <tr>
-                            <th style="width: 5%">
+                            <th style="width: 5%" class="text-center">
                                 번호
                             </th>
-                            <th style="width: 20%">
+                            <th style="width: 20%" class="text-center">
                                 상품명
                             </th>
-                            <th style="width: 30%">
+                            <th style="width: 30%" class="text-center">
                                 설치형태/정수방식
                             </th>
-                            <th>
-                                구매/렌탈
+                            <th class="text-center">
+                                판매량
                             </th>
                             <th style="width: 8%" class="text-center">
                                 등록일
@@ -100,40 +68,45 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody v-for="(product) in products" :key="product.product_no">
+                    <tbody v-for="(product) in products" :key="product.productNo">
                         <tr>
                             <td>
-                               {{product.product_no}}
+                               {{product.productNo}}
                             </td>
                             <td>
-                                <li class="list-inline-item">
-                                        <img alt="Avatar" class="table-avatar" src="../../public/html/dist/img/avatar.png">
-                                    </li>
+                                <li class="list-inline-item" >                          
+                                        <!-- <img :src="imgSrc(product.imgUrl)" /> -->
+                                       <div class="product-image-thumb"> 
+                                         <!-- <img :src="image.url" /> -->
+                                         
+                                         <img :src='`http://localhost:8082/upload/display?fileName=${product.imgUrl}`' />
+                                     </div>                                    
+                                </li>
                                 <a >
-                                    {{product.product_name}}
+                                    {{product.productName}}
                                 </a>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <ul class="list-inline">
                                     <a>
-                                    {{product.product_type}}
+                                    {{product.productType}}
                                     </a>
                                     <a>
-                                    / {{product.product_method}}
+                                    / {{product.productMethod}}
                                     </a>
                                 </ul>
                             </td>
-                            <td class="project_progress">
-                                <a>1/1</a>                             
+                            <td class="text-center">
+                                <a>{{product.productSales}}</a>                             
                             </td>
                             <td class="project-state">
-                                <span>{{product.regDate}}</span>
+                                <span>{{new Date(product.regDate).toLocaleDateString()}}</span>
                             </td>
                             <td class="project-actions text-right">
-                                <button type="button" class="btn btn-default"  @click="updateProduct(product.product_no)" >
+                                <button type="button" class="btn btn-default"  @click="updateProduct(product)" >
                                     수정
                                 </button>
-                                <button type="button" class="btn btn-danger" @click.stop="deleteProduct(product.product_no)" >
+                                <button type="button" class="btn btn-danger" @click.stop="deleteProduct(product.productNo)" >
                                     삭제
                                 </button>
                             </td>
@@ -163,30 +136,85 @@
 </template>
 
 <script>
+import { reactive} from 'vue';
+import axios from "axios";
 import {useRoute, useRouter} from 'vue-router';
 
 export default {
     props: {
         products: Object,
         default: () => {
-            return {product_no:'',
-                    product_name:'',
+            return {
+                imgUrl:'',
+                productNo:'',
+                    productName:'',
                    regDate:'',
-                   product_type:'',
-                   product_method:''};
+                   productType:'',
+                   productMethod:''};
         }
     },
+
       emits: ['delete-product','update-product'],
     setup(props,  {emit}){
+           
+        const router = useRouter();
+
+        const state = reactive({
+            images: [],
+        });
+
+    
          const deleteProduct = (productNo) => {
             emit('delete-product', productNo);
-            }
+         }
 
-            const updateProduct = (productNo) => {
-            emit('update-product', productNo);
-            }
+        const updateProduct = (product) => {   
+            console.log(product);        
+            router.push({
+                name: 'AdminUpdate',
+                params: {
+                    id: product.productNo
+                },
+                props: {
+                    products: product
+                }
+            })
+        }
 
-            return{
+        // const imgSrc =(product) => {
+        //     let path = product.imageUrl.replaceAll("\\", "/");
+        //     console.log(path);
+        //      const file = {
+        //         name: product.productName,
+        //         url: null,
+        //         path: path,
+        //     };
+        //     axios.get(`/upload/display?fileName=${path}`, {
+        //         responseType: 'blob',
+        //      })
+        //      .then(response => {
+        //         const reader = new FileReader();
+        //         reader.readAsDataURL(response.data);
+        //         reader.onload = () =>{
+        //             file.url = reader.result;
+        //             console.log(file.url);
+        //             state.images.push(file);
+        //         };
+        //     })
+        //     .catch(error => {
+        //         console.error(error);
+        //     });
+                      
+        // };
+
+        // onBeforeMount(() => {
+        //         // imgSrc 함수 실행
+        //     props.products.forEach((product) => {
+        //         imgSrc(product);
+        //         });
+        //     });
+      return{
+                state,
                 deleteProduct,
                 updateProduct,
             }
