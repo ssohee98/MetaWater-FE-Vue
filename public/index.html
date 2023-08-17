@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+
+
+
+    <!-- CSS 태그 -->
+    <!-- 기본 CSS 태그 -->
+
+    <!-- 폰트 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,700">
+
+    <!-- Google fonts - Poppins-->
+    <!-- swiper 4.4.1-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/css/swiper.min.css">
+    <!-- Magnigic Popup-->
+    <link rel="stylesheet" href="./html/vendor/magnific-popup/magnific-popup.css">
+    <!-- Leaflet Maps-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="./html/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="./html/css/custom.css" type="text/css">
+    <!-- 아이콘 태그-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+
+
+    <!-- 관리자 CSS 태그 -->
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="./html/plugins/fontawesome-free/css/all.min.css" type="text/css">
+    <!-- daterange picker -->
+    <!-- <link rel="stylesheet" href="./html/plugins/daterangepicker/daterangepicker.css" type="text/css"> -->
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="./html/plugins/icheck-bootstrap/icheck-bootstrap.min.css" type="text/css">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="./html/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" type="text/css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="./html/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" type="text/css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="./html/plugins/select2/css/select2.min.css" type="text/css">
+    <link rel="stylesheet" href="./html/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" type="text/css">
+    <!-- Bootstrap4 Duallistbox -->
+    <link rel="stylesheet" href="./html/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css" type="text/css">
+    <!-- BS Stepper -->
+    <link rel="stylesheet" href="./html/plugins/bs-stepper/css/bs-stepper.min.css" type="text/css">
+    <!-- dropzonejs -->
+    <link rel="stylesheet" href="./html/plugins/dropzone/min/dropzone.min.css" type="text/css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="./html/dist/css/adminlte.min.css"></link>
+    <link rel="stylesheet" href="./html/plugins/summernote/summernote-bs4.min.css">
+
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+
+    <!-- JS 태그 -->
+    <!-- 일반 JS 태그 -->
+
+    <script src="./html/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="./html/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="./html/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <!-- <script src="./html/dist/js/demo.js"></script> -->
+
+    <script src="./html/vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap JS bundle - Bootstrap + PopperJS-->
+
+    <!-- bootstrap 5.1.0 -->
+    <script src="./html/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Magnific Popup - Lightbox for the gallery-->
+    <script src="./html/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <!-- Smooth scroll-->
+    <script src="./html/vendor/smooth-scroll/smooth-scroll.polyfills.min.js"></script>
+    <!-- Bootstrap Select-->
+    <script src="./html/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <!-- Object Fit Images - Fallback for browsers that don't support object-fit-->
+    <script src="./html/vendor/object-fit-images/ofi.min.js"></script>
+    <!-- Swiper Carousel                       -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.min.js"></script>
+    <!-- custom js -->
+    <!-- <script src="../html/js/custom.js"></script> -->
+    <script>
+        var basePath = ''
+    </script>
+    <!-- Main Theme JS file    -->
+    <script src="./html/js/theme.js"></script>
+    <!-- Map-->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+    <!-- Available tile layers-->
+    <script src="../html/js/map-layers.js">
+    </script>
+    <script src="../html/js/map-detail.js"></script>
+    <script>
+        createDetailMap({
+            mapId: 'detailMap',
+            mapZoom: 14,
+            mapCenter: [40.732346, -74.0014247],
+            circleShow: true,
+            circlePosition: [40.732346, -74.0014247]
+        })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js">
+    </script>
+    <!-- jQuery -->
+    <script src="./html/plugins/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="./html/plugins/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="./html/plugins/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="./html/plugins/dist/js/demo.js"></script>
+
+
+    <!--임시 주석처리-->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-date-range-picker/0.19.0/jquery.daterangepicker.min.js"> </script> -->
+    <!-- <script src="../html/js/datepicker-detail.js">   </script> -->
+    <!-- built files will be auto injected -->
+</body>
+
+</html>
